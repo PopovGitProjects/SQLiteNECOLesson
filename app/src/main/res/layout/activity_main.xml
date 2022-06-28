@@ -6,15 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/tvResult"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="@+id/edContent"
         app:layout_constraintStart_toStartOf="@+id/edContent"
-        app:layout_constraintTop_toBottomOf="@+id/edContent" />
+        app:layout_constraintTop_toBottomOf="@+id/edContent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvResult"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+    </ScrollView>
 
     <EditText
         android:id="@+id/edTitle"
@@ -48,7 +61,7 @@
         android:layout_marginBottom="16dp"
         android:text="Add"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tvResult"
-        app:layout_constraintStart_toStartOf="@+id/tvResult" />
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="@+id/scrollView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

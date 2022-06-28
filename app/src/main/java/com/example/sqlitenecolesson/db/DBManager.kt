@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.provider.BaseColumns
+import android.util.Log
 import com.example.sqlitenecolesson.models.Model
 
 class DBManager(context: Context) {
@@ -26,9 +27,8 @@ class DBManager(context: Context) {
     @SuppressLint("Range")
     fun readDBData(): ArrayList<Model>{
         val dataList = ArrayList<Model>()
-        val projection = arrayOf(BaseColumns._ID, DBConstants.COLUMN_NAME_TITLE, DBConstants.COLUMN_NAME_CONTENT)
         val cursor = db?.query(DBConstants.TABLE_NAME,
-            projection,
+            null,
             null,
             null,
             null,
@@ -37,14 +37,16 @@ class DBManager(context: Context) {
         )
         with(cursor){
             while (this?.moveToNext()!!){
+                val id = cursor?.getString(cursor.getColumnIndex(BaseColumns._ID))
                 val title = cursor?.getString(cursor.getColumnIndex(DBConstants.COLUMN_NAME_TITLE))
                 val content = cursor?.getString(cursor.getColumnIndex(DBConstants.COLUMN_NAME_CONTENT))
-                dataList.add(Model(title.toString(), content.toString()))
+                dataList.add(Model(id.toString(),title.toString(), content.toString()))
             }
         }
         cursor?.close()
         return dataList
     }
+
     fun closeDb(){
         dbHelper.close()
     }
